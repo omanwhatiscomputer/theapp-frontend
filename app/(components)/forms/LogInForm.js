@@ -67,7 +67,7 @@ const LogInForm = (props) => {
             <div className="content-center w-full pt-36 lg:pt-0 lg:w-1/2">
                 <AppLogo alignXOptions={"left-20 lg:left-20 md:max-w-52"} />
 
-                <div className="place-self-center m-auto min-w-80 w-2/5">
+                <div className="place-self-center m-auto w-80 md:w-[400px] bg-white">
                     <div className="mb-16">
                         <p>Start your journey</p>
 

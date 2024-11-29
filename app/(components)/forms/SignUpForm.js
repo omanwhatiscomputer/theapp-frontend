@@ -99,7 +99,7 @@ const SignUpForm = (props) => {
             <div className="content-center w-full pt-32 lg:pt-0 lg:w-1/2">
                 <AppLogo alignXOptions={"right-20 lg:right-20 md:max-w-24"} />
 
-                <div className="place-self-center m-auto min-w-80 w-2/5 mt-20">
+                <div className="place-self-center m-auto w-2/5 mt-20">
                     <div className="mb-16">
                         <p>Make a difference</p>
 
@@ -108,7 +108,7 @@ const SignUpForm = (props) => {
                         </p>
                     </div>
                     <form onSubmit={(event) => handleSubmit(event)}>
-                        <div className=" md:flex md:flex-row md:justify-between gap-1">
+                        <div className=" md:flex md:flex-row md:justify-between gap-1 xl:">
                             <InputField
                                 name={"fname"}
                                 type={"text"}
