@@ -3,7 +3,7 @@ import DashboardToolbarButton from "@/app/(components)/common/DashboardToolbarBu
 
 import { useEffect, useState } from "react";
 
-import { FaLock, FaLockOpen, FaRegTrashAlt } from "react-icons/fa";
+import { FaLock, FaLockOpen, FaRegTrashAlt, FaUser } from "react-icons/fa";
 import {
     areArraysEqual,
     getLastSeenValue,
@@ -344,7 +344,7 @@ const DashboardContent = (props) => {
                                         }
                                     />
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-6 py-4 flex">
                                     <DashboardTableNameCell
                                         lastName={x.lastName}
                                         firstName={x.firstName}
@@ -352,6 +352,11 @@ const DashboardContent = (props) => {
                                         company={x.company}
                                         isBlocked={x.accountStatus === 1}
                                     />
+                                    {props.authTokens.userId === x.id && (
+                                        <span className="bg-blue-100 opacity-50 text-blue-800 h-5 text-xs font-sm me-2 px-1.5 py-0.5 rounded-full">
+                                            {<FaUser />}
+                                        </span>
+                                    )}
                                 </td>
                                 <td
                                     className={`px-6 py-4 ${
