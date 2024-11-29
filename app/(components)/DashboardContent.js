@@ -249,9 +249,11 @@ const DashboardContent = (props) => {
         }
     };
 
+    const theadStyle = "sticky";
+
     return (
         <div>
-            <div className="mb-1 w-full pt-1 pb-1 bg-slate-50 pl-5">
+            <div className="mb-1 w-full pt-1 pb-1 bg-slate-50 pl-5 fixed z-10 top-[56px]">
                 <DashboardToolbarButton
                     styles={
                         "text-blue-500 border-blue-500 hover:bg-gray-100 active:bg-gray-200"
@@ -281,11 +283,15 @@ const DashboardContent = (props) => {
                     <FaRegTrashAlt className="inline h-4 -translate-y-[0.15rem] text-red-700" />
                 </DashboardToolbarButton>
             </div>
-            <div className="relative overflow-x-auto">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 border-separate">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <div className=" h-[100px] bg-white w-full"></div>
+            <div className="relative ">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 border-collapse">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 sticky top-[100px] z-10">
                         <tr>
-                            <th scope="col" className="px-6 py-3 text-right">
+                            <th
+                                scope="col"
+                                className={`px-6 py-3 text-right ${theadStyle}`}
+                            >
                                 <input
                                     id="default-checkbox"
                                     type="checkbox"
@@ -293,7 +299,10 @@ const DashboardContent = (props) => {
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                                 />
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th
+                                scope="col"
+                                className={`px-6 py-3 ${theadStyle}`}
+                            >
                                 <DashboardTableHeader
                                     hvalue={"Name"}
                                     handleSortingOptions={handleSortingOptions}
@@ -302,7 +311,10 @@ const DashboardContent = (props) => {
                                     Name
                                 </DashboardTableHeader>
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th
+                                scope="col"
+                                className={`px-6 py-3 ${theadStyle}`}
+                            >
                                 <DashboardTableHeader
                                     hvalue={"Email"}
                                     handleSortingOptions={handleSortingOptions}
@@ -311,7 +323,10 @@ const DashboardContent = (props) => {
                                     Email
                                 </DashboardTableHeader>
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th
+                                scope="col"
+                                className={`px-6 py-3 ${theadStyle}`}
+                            >
                                 <DashboardTableHeader
                                     hvalue={"LastSeen"}
                                     handleSortingOptions={handleSortingOptions}
@@ -322,7 +337,7 @@ const DashboardContent = (props) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="overflow-auto max-h-full">
                         {users.map((x) => (
                             <tr
                                 className="bg-white border-b hover:bg-gray-100 cursor-pointer"

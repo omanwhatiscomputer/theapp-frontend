@@ -16,7 +16,7 @@ const TopNavBar = () => {
     const display = isUnprotected ? "hidden" : "";
 
     return (
-        <Navbar fluid rounded className={display}>
+        <Navbar fluid rounded className={`fixed z-20 w-full ${display}`}>
             <Navbar.Brand href="/">
                 <Image
                     src={app_logo}
