@@ -12,6 +12,7 @@ import {
     makeClientAuthorizationRequest,
     makeClientUserBlockOrUnblockRequest,
     makeClientUserDeletionRequest,
+    handleClientLogout,
 } from "../utils.client";
 import DashboardTableHeader from "./common/DashboardTableHeader";
 import DashboardTableNameCell from "./common/DashboardTableNameCell";
@@ -58,13 +59,6 @@ const DashboardContent = (props) => {
         let allUsers = [...users.map((i) => i.id)];
         return areArraysEqual(allUsers, selectedUsers);
     };
-    // useEffect(() => {
-    //     if (areAllUsersSelected()) {
-    //         setAllUsersSelected(true);
-    //     } else {
-    //         setAllUsersSelected(false);
-    //     }
-    // }, [selectedUsers]);
 
     const handleSpecificUserSelect = (event) => {
         if (!isIdSelected(event.target.id)) {
@@ -172,11 +166,13 @@ const DashboardContent = (props) => {
             });
         });
 
+        if (
+            !failedOperationsId.includes(props.authTokens.userId) &&
+            affectedUserIds.includes(props.authTokens.userId)
+        ) {
+            await handleClientLogout();
+        }
         if (failedOperationsId.length === 0) {
-            // toast.success(
-            //     `All users ${action}ed successfully!`,
-            //     getEmitterConfig()
-            // );
         } else {
             toast.error(`Failed to ${action} some users!`, getEmitterConfig());
             action === "block"
@@ -250,6 +246,14 @@ const DashboardContent = (props) => {
                 );
             });
         });
+
+        if (
+            !failedOperationsId.includes(props.authTokens.userId) &&
+            affectedUserIds.includes(props.authTokens.userId)
+        ) {
+            await handleClientLogout();
+        }
+
         if (failedOperationsId.length === 0) {
             // toast.success(
             //     `All users deleted successfully!`,
