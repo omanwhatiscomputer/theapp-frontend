@@ -58,6 +58,13 @@ const DashboardContent = (props) => {
         let allUsers = [...users.map((i) => i.id)];
         return areArraysEqual(allUsers, selectedUsers);
     };
+    useEffect(() => {
+        if (areAllUsersSelected) {
+            setAllUsersSelected(true);
+        } else {
+            setAllUsersSelected(false);
+        }
+    }, [selectedUsers]);
 
     const handleSpecificUserSelect = (event) => {
         if (!isIdSelected(event.target.id)) {
