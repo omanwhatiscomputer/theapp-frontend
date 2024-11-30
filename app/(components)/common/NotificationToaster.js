@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const ToasterContainer = () => {
     return (
         <ToastContainer
+            stacked={true}
             position="bottom-right"
             autoClose={5000}
             hideProgressBar={false}
