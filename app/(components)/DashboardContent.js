@@ -25,6 +25,7 @@ const DashboardContent = (props) => {
 
     const [users, setUsers] = useState(props.users);
     const [selectedUsers, setSelectedUsers] = useState([]);
+    const [allUsersSelected, setAllUsersSelected] = useState(false);
 
     const sortingProps = { sortBy, sortOrder };
 
@@ -53,7 +54,7 @@ const DashboardContent = (props) => {
     const isIdSelected = (id) => {
         return selectedUsers.some((x) => x === id);
     };
-    const areAllUsersSelected = (id) => {
+    const areAllUsersSelected = () => {
         let allUsers = [...users.map((i) => i.id)];
         return areArraysEqual(allUsers, selectedUsers);
     };
@@ -62,18 +63,24 @@ const DashboardContent = (props) => {
         if (!isIdSelected(event.target.id)) {
             let susers = [...selectedUsers, event.target.id];
             setSelectedUsers(susers);
+
+            let allUsers = [...users.map((i) => i.id)];
+            if (areArraysEqual(susers, allUsers)) setAllUsersSelected(true);
         } else {
             let susers = [...selectedUsers];
             susers = susers.filter((x) => x !== event.target.id);
             setSelectedUsers(susers);
+            setAllUsersSelected(false);
         }
     };
     const handleAllUsersSelect = () => {
         let allUsers = [...users.map((i) => i.id)];
         if (!areArraysEqual(allUsers, selectedUsers)) {
             setSelectedUsers(allUsers);
+            setAllUsersSelected(true);
         } else {
             setSelectedUsers([]);
+            setAllUsersSelected(false);
         }
     };
     const handleRowClick = (id) => {
@@ -294,6 +301,7 @@ const DashboardContent = (props) => {
                             >
                                 <input
                                     id="default-checkbox"
+                                    checked={allUsersSelected}
                                     type="checkbox"
                                     onChange={() => handleAllUsersSelect()}
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
