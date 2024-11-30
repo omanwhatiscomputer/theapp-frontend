@@ -59,7 +59,7 @@ const DashboardContent = (props) => {
         return areArraysEqual(allUsers, selectedUsers);
     };
     useEffect(() => {
-        if (areAllUsersSelected) {
+        if (areAllUsersSelected()) {
             setAllUsersSelected(true);
         } else {
             setAllUsersSelected(false);
