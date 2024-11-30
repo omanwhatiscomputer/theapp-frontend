@@ -58,21 +58,20 @@ const DashboardContent = (props) => {
         let allUsers = [...users.map((i) => i.id)];
         return areArraysEqual(allUsers, selectedUsers);
     };
-    useEffect(() => {
-        if (areAllUsersSelected()) {
-            setAllUsersSelected(true);
-        } else {
-            setAllUsersSelected(false);
-        }
-    }, [selectedUsers]);
+    // useEffect(() => {
+    //     if (areAllUsersSelected()) {
+    //         setAllUsersSelected(true);
+    //     } else {
+    //         setAllUsersSelected(false);
+    //     }
+    // }, [selectedUsers]);
 
     const handleSpecificUserSelect = (event) => {
         if (!isIdSelected(event.target.id)) {
             let susers = [...selectedUsers, event.target.id];
             setSelectedUsers(susers);
 
-            let allUsers = [...users.map((i) => i.id)];
-            if (areArraysEqual(susers, allUsers)) setAllUsersSelected(true);
+            if (susers.length === users.length) setAllUsersSelected(true);
         } else {
             let susers = [...selectedUsers];
             susers = susers.filter((x) => x !== event.target.id);
